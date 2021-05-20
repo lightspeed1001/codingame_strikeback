@@ -13,6 +13,8 @@ using namespace std;
 int main()
 {
 
+    int boostsAvailable = 1;
+    int boostDistThreshhold = 1000;
     // game loop
     while (1) {
         int x;
@@ -36,12 +38,21 @@ int main()
         int thrust;
         if (nextCheckpointAngle > 90 || nextCheckpointAngle < -90)
         {
-            thrust = 0;
+            thrust = 10;
         }
         else
         {
             thrust = 100;
         }
-        cout << nextCheckpointX << " " << nextCheckpointY << " " << thrust << endl;
+
+        if(boostsAvailable > 0 && nextCheckpointDist >= boostDistThreshhold)
+        {
+            cout << nextCheckpointX << " " << nextCheckpointY << " BOOST" << endl;
+            boostsAvailable--;
+        }
+        else
+        {
+            cout << nextCheckpointX << " " << nextCheckpointY << " " << thrust << endl;
+        }
     }
 }
